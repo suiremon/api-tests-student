@@ -14,7 +14,13 @@
 3. [Установите](https://go.dev/doc/install) Go версии 1.25.1
 4. [Настройте](https://docs.github.com/ru/authentication/connecting-to-github-with-ssh) доступ к своему Github-аккаунту
    по SSH-ключу.
-5. Склонируйте себе репозиторий: `git clone <путь к вашему репозиторию>`
+5. Склонируйте репозиторий и перейдите в его папку:
+
+```bash
+git clone https://github.com/suiremon/api-tests-student.git
+cd api-tests-student
+```
+
 6. Подтяните необходимые зависимости через команду в корне проекта:
 
 ```bash
@@ -26,7 +32,12 @@
 ```
 TEST_LOGIN=your_login
 TEST_PASSWORD=your_password
+TEST_SECOND_LOGIN=another_user_login
+TEST_SECOND_PASSWORD=another_user_password
 ```
+
+Нужны два аккаунта: один создаёт объявления, другой добавляет их в избранное.
+Для старых тестов у первого аккаунта должно быть объявление `ЛАБУБУ` с фото.
 
 8. Для запуска всех тестов достаточно выполнить команду в корне проекта:
 
@@ -38,6 +49,18 @@ TEST_PASSWORD=your_password
 
 ```bash
   go test -v ./tests/scenarios/myAdvertisement/
+```
+
+Сценарии лабораторной:
+
+```bash
+go test -count=1 -v ./tests/scenarios/advertisementCreation/ ./tests/scenarios/favorites/
+```
+
+Проверка повторяемости без кеша результатов:
+
+```bash
+go test -count=3 -v ./...
 ```
 
 ## Логирование

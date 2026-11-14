@@ -44,6 +44,7 @@ func (at *ApiTest) Create() *apitest.APITest {
 	}
 	return apitestNew.
 		Intercept(func(request *http.Request) {
+			WaitForRequest()
 			request.Header.Set("User-Agent", at.userAgent)
 
 			if err := mergeServiceUrls(at.host, request.URL); err != nil {
